@@ -116,7 +116,7 @@ def featurize(tagged_sentences, extra_data=None):
                 features['istittle:'] = word.istitle()
                 features['isupper'] = word.isupper()
                 features['mayusinit'] = word[0].isupper()
-                features['target'] = extra_data[idy][idx][1]
+                features['target'] = extra_data[idy][idx][0]
             features[extra_data[idy][idx][0]] += 1
             features[extra_data[idy][idx][1]] += 1
             features[POS] += 1
@@ -145,9 +145,6 @@ def featurize(tagged_sentences, extra_data=None):
             else:
                 features[tagged_sentence[idx + 2][0] + "++"] += 1
                 features[tagged_sentence[idx + 2][1] + "++"] += 1
-            print(features)
-            import time
-            time.sleep(5)
             featurized[word] = features
     return featurized
 
@@ -265,8 +262,8 @@ if __name__ == "__main__":
     print("Iniciando con {} ({})".format(file , str(datetime.now())))
     words, vectors, mentions = vectorize(featurize(tagged_sentences,
                                                    extra_data=extra_data),
-                                                   normalize=False,
-                                                   feature_selection=False)
+                                                   normalize=True,
+                                                   feature_selection=True)
     if distortion:
         _k_distortion(vectors)
     kmeans = cluster(vectors, words)
