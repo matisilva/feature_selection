@@ -8,9 +8,11 @@ from datetime import datetime
 from nltk.corpus import stopwords
 from scipy.spatial.distance import cdist
 from nltk.corpus import wordnet as wn
+from functools import reduce
 import numpy as np
 import pprint
 
+ommited_words = ['endofarticle']
 
 pp = pprint.PrettyPrinter(indent=4)
 
@@ -19,6 +21,45 @@ def _wordnet_lemmas(word):
 
 def _wordnet_definition(word):
     return wn.synsets(word, lang='spa')[0].definition()
+
+def _words_filter(word):
+    if word[2][0] == "F":
+        return True
+    word = word[0].lower()
+    if len(word) < 2:
+        return True
+    return reduce(lambda x,y: x or y, list(map(lambda x: x.lower==word.lower, ommited_words)), False)
+
+def parser_wikicorpus(file):
+    print("--Parsing {}".format(file))
+    with open(file, encoding="ISO-8859-1") as f:
+        content=f.readlines()
+    _filter_preprocessing = lambda line: "<doc" not in line and "</doc" not in line
+    content = list(filter(_filter_preprocessing, content))
+    #content = list(map(lambda line: line.split(" "), content))
+    content.append('\n')
+    sentences = []
+    sentence = []
+    for line in content:
+        if (line != "\n" ):
+            sentence.append(line)
+        else: 
+            sentences.append(sentence)
+            sentence = []
+    tagged_sentences = []
+    extra_data_sentences = []
+    for id, sentence in enumerate(sentences):
+        tagged_words = []
+        extra_data = []
+        for word in sentence:
+            word = word.split(" ")
+            if _words_filter(word):
+                continue
+            tagged_words.append((word[0].lower(),word[2],word[0]))
+            extra_data.append((word[1], word[3]))
+        tagged_sentences.append(tagged_words)
+        extra_data_sentences.append(extra_data)
+    return tagged_sentences, extra_data_sentences
 
 def _tagger(file, tagger_name='stanford'):
     if tagger_name  == "spacy":
@@ -75,7 +116,7 @@ def featurize(tagged_sentences, extra_data=None):
                 features['mayusinit'] = word[0].isupper()
                 features[extra_data[idy][idx][0]] += 1
                 features[extra_data[idy][idx][1]] += 1
-                features['target'] = POS
+                features['target'] = extra_data[idy][idx][1]
             features[POS] += 1
             features['mentions'] += 1
             #preword
@@ -157,7 +198,7 @@ def vectorize(featurized_words, normalize=True, feature_selection=True):
         vectors = _normalize(vectors)
     if feature_selection:
         print(vectors.shape)
-        vectors = _feature_selection(vectors, method="SVD", target=target_index)
+        vectors = _feature_selection(vectors, method="SelectKBest", target=target_index)
         print(vectors.shape)
     return words_index, vectors, mention_index
 
@@ -207,17 +248,18 @@ def preety_print_cluster(kmeans, refs, mentions):
     plt.show()
 
 if __name__ == "__main__":
-    print(wn.synsets('dog'))
-    print(wn.synsets('perro'))
-    raise Exception("FIN")
     with_spacy = True
-    tagger = 'spacy'
+    #tagger = 'spacy'
     distortion = False
-    file = "lavoz1000notas.txt"
+    # file = "lavoz1000notas.txt"
+    # tagged_sentences, extra_data = _tagger(file, tagger)
+    file = "spanishEtiquetado_sample"
+    tagged_sentences, extra_data = parser_wikicorpus(file)
     print("Iniciando con {} ({})".format(file , str(datetime.now())))
-    tagged_sentences, extra_data = _tagger(file, tagger)
     words, vectors, mentions = vectorize(featurize(tagged_sentences,
-                                                   extra_data=extra_data))
+                                                   extra_data=extra_data),
+                                                   normalize=True,
+                                                   feature_selection=False)
     if distortion:
         _k_distortion(vectors)
     kmeans = cluster(vectors, words)
