@@ -3,7 +3,7 @@ from sklearn.feature_extraction import DictVectorizer
 from sklearn.cluster import KMeans
 from collections import defaultdict
 from string import punctuation
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from datetime import datetime
 from nltk.corpus import stopwords
 from scipy.spatial.distance import cdist
@@ -230,6 +230,7 @@ def preety_print_cluster(kmeans, refs, mentions):
     for label in labeled.keys():
         print(label)
         print(labeled[label])
+    '''
     centroids = kmeans.cluster_centers_
     size = [len(word) for word in refs]
     data = np.array(list(zip(labels, refs, size, mentions)))
@@ -244,8 +245,9 @@ def preety_print_cluster(kmeans, refs, mentions):
             plt.annotate(point, xy=(data[:,0][idx], data[:,2][idx]))
     plt.ylabel('longitud')
     plt.xlabel('cluster')
-    print("Finalizado (%s)" %str(datetime.now()))
     plt.show()
+    '''
+    print("Finalizado (%s)" %str(datetime.now()))
 
 if __name__ == "__main__":
     with_spacy = True
