@@ -32,7 +32,7 @@ def _words_filter(word):
 
 def parser_wikicorpus(file):
     print("--Parsing {}".format(file))
-    with open(file, encoding="ISO-8859-1") as f:
+    with open(file, encoding="utf-8") as f:
         content=f.readlines()
     _filter_preprocessing = lambda line: "<doc" not in line and "</doc" not in line
     content = list(filter(_filter_preprocessing, content))
@@ -56,7 +56,7 @@ def parser_wikicorpus(file):
             if _words_filter(word):
                 continue
             tagged_words.append((word[0].lower(),word[2],word[0]))
-            extra_data.append((word[1], word[3]))
+            extra_data.append((word[1], word[3].strip("\n")))
         tagged_sentences.append(tagged_words)
         extra_data_sentences.append(extra_data)
     return tagged_sentences, extra_data_sentences
@@ -107,6 +107,8 @@ def featurize(tagged_sentences, extra_data=None):
     stopw = stopwords.words('spanish') + list(punctuation)
     for idy, tagged_sentence in enumerate(tagged_sentences):
         for idx, (word, POS, real_word) in enumerate(tagged_sentence):
+            if extra_data[idy][idx][1] == "0":
+                continue
             if word in featurized.keys():
                 features = featurized[word]
             else:
@@ -114,9 +116,9 @@ def featurize(tagged_sentences, extra_data=None):
                 features['istittle:'] = word.istitle()
                 features['isupper'] = word.isupper()
                 features['mayusinit'] = word[0].isupper()
-                features[extra_data[idy][idx][0]] += 1
-                features[extra_data[idy][idx][1]] += 1
                 features['target'] = extra_data[idy][idx][1]
+            features[extra_data[idy][idx][0]] += 1
+            features[extra_data[idy][idx][1]] += 1
             features[POS] += 1
             features['mentions'] += 1
             #preword
@@ -143,6 +145,9 @@ def featurize(tagged_sentences, extra_data=None):
             else:
                 features[tagged_sentence[idx + 2][0] + "++"] += 1
                 features[tagged_sentence[idx + 2][1] + "++"] += 1
+            print(features)
+            import time
+            time.sleep(5)
             featurized[word] = features
     return featurized
 
@@ -260,7 +265,7 @@ if __name__ == "__main__":
     print("Iniciando con {} ({})".format(file , str(datetime.now())))
     words, vectors, mentions = vectorize(featurize(tagged_sentences,
                                                    extra_data=extra_data),
-                                                   normalize=True,
+                                                   normalize=False,
                                                    feature_selection=False)
     if distortion:
         _k_distortion(vectors)
