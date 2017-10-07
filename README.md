@@ -87,7 +87,7 @@ def _feature_selection(matrix, method="PCA", target=None):
 ```
 
 # Métodos no supervisados (reducción de dimensionalidad)
->>>>>>> Stashed changes
+
 ## PCA
 ```python
     if method == "PCA":
@@ -135,6 +135,7 @@ los mas representativos.
 ```
 
 [Ver resultado](littleSample_SelectKBest.log)
+
 [Ver resultado con POS](littleSample_SelectKBest_POS.log)
 
 ## LinearSVC
