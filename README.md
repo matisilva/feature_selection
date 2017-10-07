@@ -25,7 +25,7 @@ basado en Wordnet.
 
 # Métodos supervisados (reducción de dimensionalidad)
 500K oraciones(ejemplo)
-[Ver resultado](randomSample_spanishEtiquetado)
+[Ver resultado](littleSample_spanishEtiquetado)
 
 # Preproceso de wikicorpus
 Se retiraron las lineas no relevantes como los indicadores de principio y fin
@@ -102,6 +102,8 @@ El algoritmo que utilizamos para aplicar esta técnica es
 **sklearn.decomposition.PCA**. Su funiconamiento es bueno pero el tiempo de
 demora en el analisis de recursos para matrices esparsas es intolerable.
 
+[Ver resultado](littleSample_PCA.log)
+
 ## SVD
 ```python
     if method == "SVD":
@@ -112,6 +114,8 @@ demora en el analisis de recursos para matrices esparsas es intolerable.
 Truncated Singular Value Descomposition es un método para la reducción de 
 similaridad no supervisada. Utiliza la descomposicion de valores singulares
 para reducir la dimensionalidad de la matriz de origen. 
+
+[Ver resultado](littleSample_SVD.log)
 
 # Métodos supervisados (selección de features)
 Los métodos supervisados tienen como cláusula tener una clase de asignación
@@ -130,6 +134,9 @@ los mas representativos.
         reduced_matrix = SelectKBest(chi2, k=target_components).fit_transform(X, y)
 ```
 
+[Ver resultado](littleSample_SelectKBest.log)
+[Ver resultado con POS](littleSample_SelectKBest_POS.log)
+
 ## LinearSVC
 Linear Support Vector Classification mediante una funcion de penalidad y
 aplicando tecnicas de Support Vector Machines.
@@ -144,6 +151,7 @@ aplicando tecnicas de Support Vector Machines.
         model = SelectFromModel(lsvc, prefit=True)
         reduced_matrix = model.transform(X)
 ```
+[Ver resultado](littleSample_LinearSVC.log)
 
 ## SelectPercentile
 Selecciona el percentile indicado de los features actuales. La selección una
@@ -155,9 +163,30 @@ vez mas la hará basandose en la clase de target enviada.
         selector = SelectPercentile(f_classif, percentile=5)
         reduced_matrix = selector.fit_transform(X, y)
 ```
-# Resultados en clustering
-## Métodos no supervisados sobre corpus de "la voz del interior".
+[Ver resultado](littleSample_SelectPercentile.log)
 
-## Métodos no supervisados aplicados a WikiCorpus
+# Conclusiones
+Decidimos no volver a rehacer los clustering sobre el corpus anterior ya que
+seria repetir de nuevo el experimento realizado en la anterior etapa.
 
-# Resultados en clustering
+## Clustering con reduccion de dimensionalidad(no supervisada):
+En este caso vimos una mejora en cuanto a los cardinales de los clusters,
+siendo cada vez mas homogeneos y eliminando singletones. También fue notoria la 
+diferncia de tiempo en cuanto a la ejecución. A pesar del overhead del calculo
+de obtener cuales son los features relevantes, el gran impacto esta en el
+tiempo ahorrado para el clustering. PCA definitivamente no es un buen método
+para reduccion de dimensionalidad de matrices esparsas, no solo por los malos
+resultados sino tambien por que fue el mas lento de los procesos aplicados.
+TruncatedSVD parecería ser la mejor opción para este tipo de matrices.
+
+## Clustering con feature selection(supervisada)
+En este caso distinguimos un comportamiento bastante malo en el uso de 
+LinearSVC, pero tanto SelectKBest como SelectPercentile fueron satisfactorios
+en su tarea tanto con la etiqueta de POS como objetivo como asi también la
+etiqueta de sentido de Wordnet.
+
+Con respecto a esto ultimo vemos que al aplicar como objetivo los sentidos, los
+clusters fueron mas orientados a esta diferenciación, mezclando sin diferenciar
+adjetivos de verbos o demás. En cuanto a la evaluación con POS tag como 
+objetivo del selector de features, vemos que los clusters tuvieron que ver más
+con la clase de palabra, dejando agrupados verbos adjetivos o demás.

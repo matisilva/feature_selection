@@ -3,7 +3,7 @@ from os import listdir
 from os.path import isfile, join
 
 
-SENTENCES_BY_FILE = 1000
+SENTENCES_BY_FILE = 8000
 
 def get_random_sentences(file):
     print("--Getting from {}".format(file))
@@ -36,7 +36,7 @@ for file in files:
     print("--Added {} sentences".format(str(num_sentences)))
     total_sentences += num_sentences
     lines.extend(sentences)
-thefile = open('randomSample2_SpanishEtiquetado', 'w')
+thefile = open('littleSample_spanishEtiquetado', 'w')
 print("--Writing {}".format(total_sentences))
 for item in lines:
     thefile.write("%s" % item)
