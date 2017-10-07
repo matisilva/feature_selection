@@ -12,20 +12,16 @@ Por otro lado también se aplicarán técnicas de selección de features basando
 en filtrar aquellos K features que sean determinantes para la clasificación
 objetivo. Esta clasificación será provista como entrenamiento para que el 
 selector pueda determinar la relevancia de cada feature. Se utilizarán dos
-clasificaciones como vectores objetivo, la etiqueta POS en nuestro caso
-generada por la libreria spacy y en una segunda iteración será el sentido
-basado en Wordnet.
+clasificaciones como vectores objetivo, la etiqueta **POS** y en una segunda
+iteración será el **sentido basado en Wordnet**.
 
 # WikiCorpus
-- metodos de vectorizacion, featurizacion normalizacion spacy de clustering with embeddings
-- normalizacion de texto
-- wiki corpus tagged o raw.
-- Parseo
-
-
-# Métodos supervisados (reducción de dimensionalidad)
-500K oraciones(ejemplo)
-[Ver resultado](littleSample_spanishEtiquetado)
+Para los experimentos se utilizará una muestra aleatoria del WikiCorpus en 
+español y se le aplicarán ambas técnicas.
+Debido a que este corpus ya posee etiquetado, solo se realizara un parseo
+y normalizacion de texto sobre el mismo.
+La **muestra aleatoria** constará en seleccionar de cada archivo taggeado una
+porción de hasta 10000 oraciones. [¿Cómo?](random_sentences.py)
 
 # Preproceso de wikicorpus
 Se retiraron las lineas no relevantes como los indicadores de principio y fin
