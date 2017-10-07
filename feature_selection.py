@@ -116,10 +116,10 @@ def featurize(tagged_sentences, extra_data=None):
                 features['istittle:'] = word.istitle()
                 features['isupper'] = word.isupper()
                 features['mayusinit'] = word[0].isupper()
-                features['target'] = extra_data[idy][idx][0]
-            features[extra_data[idy][idx][0]] += 1
-            features[extra_data[idy][idx][1]] += 1
-            features[POS] += 1
+                features['target'] = POS
+            #features[extra_data[idy][idx][0]] += 1
+            #features[extra_data[idy][idx][1]] += 1
+            #features[POS] += 1
             features['mentions'] += 1
             #preword
             if idx == 0:
@@ -179,6 +179,11 @@ def _feature_selection(matrix, method="PCA", target=None):
         lsvc = LinearSVC(C=0.5, penalty="l1", dual=False).fit(X, y)
         model = SelectFromModel(lsvc, prefit=True)
         reduced_matrix = model.transform(X)
+    if method == "SelectPercentile":
+        from sklearn.feature_selection import SelectPercentile, f_classif
+        X, y = matrix, target
+        selector = SelectPercentile(f_classif, percentile=10)
+        reduced_matrix = selector.fit(X, y)
     return reduced_matrix
 
 def vectorize(featurized_words, normalize=True, feature_selection=True):
@@ -188,7 +193,7 @@ def vectorize(featurized_words, normalize=True, feature_selection=True):
     mention_index = []
     target_index = []
     for word in featurized_words.keys():
-        if featurized_words[word]['mentions'] < 15 or len(word) < 4 or word=="number":
+        if featurized_words[word]['mentions'] < 500 or len(word) < 4 or word=="number":
             continue
         mention_index.append(featurized_words[word].pop('mentions'))
         words_index.append(word)
@@ -257,7 +262,7 @@ if __name__ == "__main__":
     distortion = False
     # file = "lavoz1000notas.txt"
     # tagged_sentences, extra_data = _tagger(file, tagger)
-    file = "spanishEtiquetado_sample"
+    file = "littleSample_spanishEtiquetado"
     tagged_sentences, extra_data = parser_wikicorpus(file)
     print("Iniciando con {} ({})".format(file , str(datetime.now())))
     words, vectors, mentions = vectorize(featurize(tagged_sentences,

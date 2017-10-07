@@ -1,0 +1,131 @@
+--Parsing littleSample_spanishEtiquetado
+Iniciando con littleSample_spanishEtiquetado (2017-10-07 02:06:55.706710)
+--Featurizing
+--Vectorizing...
+--Normalizing..
+(973, 379127)
+--Selecting features with SelectKBest 
+(973, 300)
+--Clustering...
+--Making graph...
+0
+['especie', 'versión', 'página', 'institución', 'enfermedad', 'velocidad', 'estrella', 'relación', 'cantante', 'toma', 'estructura', 'extensión', 'carta', 'medida', 'población', 'fuente', 'actriz', 'etapa', 'división', 'obra', 'mujer', 'organización', 'superficie', 'unidad', 'técnica', 'marca', 'distancia', 'persona', 'función']
+1
+['tema', 'juego', 'terreno', 'proyecto', 'templo', 'conflicto', 'castillo', 'equipo', 'territorio', 'estadio', 'estado', 'principio', 'exterior', 'partido', 'programa', 'corazón', 'puente', 'núcleo', 'campeonato', 'interior', 'aire', 'edificio', 'movimiento', 'palacio', 'cuerpo', 'comercio', 'término', 'grupo', 'club', 'museo', 'idioma']
+2
+['condiciones', 'partes', 'elecciones', 'regiones', 'ciudades', 'ideas', 'actividades', 'provincias', 'unidades', 'características', 'áreas', 'imágenes', 'cosas', 'líneas', 'calles', 'hojas', 'islas', 'aves', 'casas', 'tropas', 'palabras', 'estrellas', 'personas', 'empresas', 'letras', 'bandas', 'figuras', 'versiones', 'tierras', 'películas', 'mujeres', 'estaciones', 'acciones', 'operaciones', 'fuerzas', 'armas', 'formas', 'fuentes', 'clases', 'canciones', 'puertas', 'relaciones', 'técnicas', 'aguas', 'funciones', 'piezas', 'familias', 'zonas', 'obras', 'manos']
+3
+['religión', 'iglesia', 'revista', 'ciudad', 'guerra', 'industria', 'compañía', 'palabra', 'nave', 'villa', 'película', 'tierra', 'tradición', 'agricultura', 'sociedad', 'zona', 'calle', 'carretera', 'república', 'naturaleza', 'reina', 'cultura', 'actualidad', 'familia', 'universidad', 'canción', 'empresa', 'banda', 'frontera', 'escuela', 'costa', 'liga', 'novela', 'isla', 'comunidad', 'literatura', 'temporada', 'revolución', 'época']
+4
+['llama', 'utiliza', 'cree', 'formó', 'sabe', 'presentó', 'creó', 'produce', 'produjo', 'considera', 'realiza', 'mantuvo', 'conoce', 'inició']
+5
+['medios', 'jóvenes', 'elementos', 'padres', 'personajes', 'tiempos', 'textos', 'objetos', 'estados', 'países', 'efectos', 'siglos', 'hechos', 'libros', 'nombres', 'términos', 'estudios', 'grupos', 'datos', 'servicios', 'animales', 'pueblos', 'trabajos', 'autores', 'resultados', 'sistemas', 'proyectos', 'niños', 'problemas', 'miembros', 'restos', 'derechos', 'territorios', 'campos', 'artistas', 'modelos', 'temas', 'títulos', 'juegos', 'niveles', 'soldados', 'vecinos', 'edificios', 'materiales', 'artículos', 'cambios', 'ojos', 'lugares', 'hermanos', 'colores', 'equipos', 'ríos', 'jugadores', 'discos', 'españoles', 'amigos', 'programas', 'productos', 'estudiantes', 'recursos', 'municipios', 'casos']
+6
+['completo', 'general', 'francés', 'alemán', 'japonés', 'español', 'llamado', 'ruso', 'directo', 'italiano', 'denominado', 'griego']
+7
+['utilizar', 'formar', 'construir', 'estar', 'hacer', 'llegar', 'dejar', 'crear', 'producir', 'embargo', 'seguir', 'usar', 'realizar', 'tener', 'convertir', 'alcanzar', 'destacar', 'jugar', 'pasar', 'evitar', 'llevar', 'mantener', 'encontrar', 'conseguir', 'tomar', 'volver', 'obtener', 'ganar']
+8
+['demografía']
+9
+['calidad', 'línea', 'fecha', 'categoría', 'imagen', 'cadena', 'causa', 'formación', 'torre', 'noche', 'producción', 'constitución', 'expedición', 'fundación', 'administración', 'práctica', 'localidad', 'historia', 'independencia', 'victoria', 'fase', 'puerta', 'base', 'unión', 'figura', 'casa', 'sección', 'plaza', 'publicación', 'capilla', 'escena', 'fiesta', 'ruta', 'prueba', 'cabeza', 'teoría', 'selección', 'venta', 'batalla', 'entrada', 'posición', 'campaña', 'sala', 'corte', 'misión', 'muerte', 'capital', 'construcción', 'estación', 'serie', 'dirección', 'salida', 'razón']
+10
+['vuelve', 'pudo', 'podemos', 'podía', 'podría', 'suelen', 'decidió', 'suele', 'deben', 'empezó', 'comenzó', 'puede', 'pueden', 'debe', 'logró', 'decide', 'permite', 'volvió']
+11
+['visto', 'muerto', 'pasando', 'usado', 'utilizado', 'producido', 'escrito', 'desarrollado', 'presente', 'realizado']
+12
+['plan', 'intento', 'camino', 'caso', 'control', 'tratado', 'concepto', 'rango', 'conjunto', 'nacimiento', 'final', 'centro', 'lado', 'nivel', 'periodo', 'área', 'apoyo', 'lanzamiento', 'punto', 'período', 'paso', 'servicio', 'diseño', 'estudio', 'proceso', 'sistema', 'nombre', 'campo', 'desarrollo', 'cargo', 'grado', 'conocimiento', 'tratamiento', 'curso', 'orden', 'objetivo']
+13
+['fuera', 'similar', 'será', 'sería', 'sigue', 'incluyendo', 'llegando', 'solo', 'estuvo', 'dado', 'están', 'está', 'dando', 'fueron', 'veces', 'queda', 'tenido', 'siendo', 'eran', 'menudo', 'haciendo', 'quedó', 'sido', 'estaban', 'estaba']
+14
+['alta', 'diferente', 'actual', 'menor', 'doble', 'difícil', 'mayor', 'fuerte', 'simple', 'igual', 'especial', 'baja', 'importante', 'alto', 'cierto', 'máxima', 'mejor', 'dicho', 'llamada']
+15
+['argumento', 'geografía', 'descripción', 'trayectoria']
+16
+['nombrado', 'creado', 'lanzado', 'elegido', 'construido', 'fundada', 'publicado', 'fundado', 'grabado', 'creada']
+17
+['habitantes', 'hombres', 'meses', 'partidos', 'temporadas', 'años', 'minutos', 'episodios', 'ocasiones', 'edición', 'puntos', 'semanas', 'especies', 'horas', 'hijos', 'días']
+18
+['nuevos', 'antiguos', 'distintos', 'diversos', 'diferentes', 'propios', 'numerosos', 'pequeños', 'grandes']
+19
+['nuevo', 'buen', 'antiguo', 'propio', 'único', 'máximo', 'tercer', 'mismo', 'primer', 'cuarto', 'segundo', 'último', 'famoso', 'pequeño']
+20
+['cultural', 'personal', 'posterior', 'musical', 'nacional', 'occidental', 'popular', 'inferior', 'real', 'tradicional', 'militar', 'social', 'profesional', 'oficial', 'natural', 'municipal', 'local', 'mundial', 'internacional', 'original', 'común', 'oriental', 'superior', 'libre', 'principal', 'independiente', 'comercial', 'central', 'estadounidense']
+21
+['maestro', 'arquitecto', 'príncipe', 'capitán', 'señor', 'video', 'álbum', 'disco', 'libro', 'premio', 'gobernador', 'episodio', 'público', 'enemigo', 'pasado', 'canal', 'matrimonio', 'presidente', 'sencillo']
+22
+['frecuencia', 'edad', 'televisión', 'altitud', 'forma', 'radio', 'seguridad', 'flores', 'madera', 'vista', 'investigación', 'manera', 'longitud', 'carga', 'comunicación', 'referencia', 'altura', 'piedra', 'sangre', 'plantas', 'plata', 'salud']
+23
+['alcalde', 'autor', 'líder', 'reconocimiento', 'tipo', 'número', 'habla', 'director', 'producto', 'cambio', 'obispo', 'contenido', 'jefe', 'ministro', 'total', 'objeto', 'ejemplo', 'análisis', 'profesor', 'comandante', 'entrenador', 'resultado', 'campeón', 'motivo']
+24
+['encuentra', 'encontraba', 'casó', 'convierte', 'encuentran', 'convirtió']
+25
+['enlaces']
+26
+['locales', 'internacionales', 'políticos', 'oficiales', 'musicales', 'menores', 'anteriores', 'humanos', 'políticas', 'similares', 'mayores', 'nacionales', 'naturales', 'militares', 'sociales']
+27
+['única', 'misma', 'primera', 'segunda', 'antigua', 'última', 'tercera']
+28
+['pequeña', 'buena', 'gran', 'sola', 'dicha', 'larga', 'nueva']
+29
+['creación', 'región', 'pérdida', 'década', 'presencia', 'posibilidad', 'existencia', 'idea', 'mayoría', 'caída', 'llegada', 'provincia']
+30
+['bibliografía', 'notas', 'referencias']
+31
+['blanca', 'comuna', 'pública', 'económica', 'completa', 'política', 'civil', 'media', 'francesa', 'española']
+32
+['negro', 'humano', 'británico', 'blanco', 'rojo', 'azul', 'político', 'argentino', 'siguiente', 'anterior', 'verde', 'histórico', 'mexicano']
+33
+['numerosas', 'distintas', 'nuevas', 'pequeñas', 'primeras', 'diversas']
+34
+['atención', 'lucha', 'derecha', 'fuerza', 'memoria', 'arquitectura', 'policía', 'composición', 'corriente', 'ciencia', 'operación', 'vida', 'distribución', 'actuación', 'educación', 'acción', 'energía', 'clase', 'filosofía', 'poesía', 'pintura', 'defensa', 'mano', 'marcha', 'prensa', 'semana', 'masa', 'información', 'libertad', 'crisis', 'crítica', 'situación', 'planta', 'gente', 'protección', 'música', 'temperatura', 'actividad', 'cuenca', 'clasificación', 'lengua', 'izquierda', 'resistencia', 'tecnología', 'presión', 'vuelta', 'economía', 'experiencia', 'importancia']
+35
+['municipales']
+36
+['habían', 'haber', 'había', 'haya']
+37
+['metal', 'transporte', 'tamaño', 'fondo', 'sonido', 'medio', 'derecho', 'acceso', 'cine', 'vino', 'fuego', 'invierno', 'fútbol', 'amor', 'arte', 'agua', 'dinero', 'peso', 'piano', 'dios', 'interés', 'teatro', 'estilo', 'acuerdo', 'poder', 'hecho', 'combate', 'crecimiento', 'trabajo', 'ganado', 'material', 'color', 'origen', 'rock', 'carácter', 'verano']
+38
+['hace', 'hizo', 'dijo', 'incluyen', 'hicieron', 'dice', 'hacen', 'realizó', 'presenta', 'parece', 'muestra']
+39
+['capaz', 'largo', 'finales', 'principios', 'trata', 'miembro', 'tipos']
+40
+['médico', 'compositor', 'bajo', 'pintor', 'artista', 'periodista', 'actor', 'poeta', 'productor', 'escritor', 'joven']
+41
+['futuro', 'lago', 'mercado', 'siglo', 'pueblo', 'parque', 'mundo', 'gobierno', 'sector', 'emperador', 'suelo', 'torneo', 'diario', 'planeta', 'ejército', 'imperio', 'país', 'extremo']
+42
+['compuesta', 'escrita', 'formada', 'formado', 'dirigido', 'dirigida', 'compuesto']
+43
+['tenían', 'tuvo', 'ofrece', 'tienen', 'tiene', 'incluye', 'significa', 'contiene', 'existe', 'posee', 'existen', 'escribió', 'hubo', 'tuvieron', 'tenía']
+44
+['mejores', 'siguientes', 'primeros', 'principales', 'últimos', 'mismos']
+45
+['externos']
+46
+['situada', 'participó', 'basada', 'ubicada', 'basado', 'ubicado', 'situado']
+47
+['referir']
+48
+['batería', 'inglés', 'guitarra', 'honor', 'vivo', 'realidad', 'chile', 'león', 'argentina', 'córdoba', 'cuba']
+49
+['recibe', 'obtuvo', 'pasa', 'representa', 'destacan', 'lleva', 'dejó', 'pasó', 'consiguió', 'ganó', 'llegó', 'fundó', 'siguió', 'continuó', 'recibió', 'llevó', 'llega', 'destaca', 'publicó', 'comienza', 'pertenece', 'alcanzó', 'tomó', 'llegaron']
+50
+['posible', 'decir', 'considerado', 'necesario']
+51
+['censo', 'barrio', 'ayuntamiento', 'condado', 'distrito', 'reino', 'valle']
+52
+['labor', 'hermano', 'hermana', 'carrera', 'hijo', 'esposa', 'madre', 'padre', 'amigo', 'propia']
+53
+['resto', 'puerto', 'norte', 'oeste', 'título', 'este', 'comienzo', 'inicio', 'municipio', 'primero', 'duque', 'mando', 'conde']
+54
+['departamento', 'cantón']
+55
+['importantes', 'conocidos', 'conocido', 'grande', 'conocida']
+56
+['encuentro', 'personaje', 'viaje', 'aspecto', 'tiempo', 'momento', 'concierto', 'género', 'puesto', 'ambiente', 'sitio', 'valor', 'espacio', 'modelo', 'contrato', 'artículo', 'acto', 'papel', 'ataque', 'hombre', 'problema', 'texto', 'modo', 'efecto', 'éxito', 'lugar', 'clima', 'sentido', 'niño', 'motor', 'jugador', 'recorrido']
+57
+['murió', 'estudió', 'falleció', 'nació', 'nacido', 'juega']
+58
+['trabajó', 'apareció', 'cuenta', 'trabajar', 'aparece', 'terminó', 'vive', 'jugó', 'contaba', 'aparecen']
+59
+['hija', 'generación', 'colaboración', 'medalla', 'influencia', 'falta', 'aparición', 'ayuda', 'hora', 'mitad', 'sede', 'cantidad', 'propiedad', 'capacidad', 'densidad', 'diferencia', 'parte', 'variedad', 'lista', 'colección', 'participación']
+Finalizado (2017-10-07 02:07:39.515472)
