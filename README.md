@@ -128,6 +128,12 @@ los mas representativos.
         from sklearn.feature_selection import SelectKBest, chi2
         X, y = matrix, target
         reduced_matrix = SelectKBest(chi2, k=target_components).fit_transform(X, y)
+```
+
+## LinearSVC
+Linear Support Vector Classification mediante una funcion de penalidad y
+aplicando tecnicas de Support Vector Machines.
+```python
     if method == "LinearSVC":
         if target is None:
             raise Exception("No target found on supervised _feature_selection")
@@ -137,18 +143,18 @@ los mas representativos.
         lsvc = LinearSVC(C=1, penalty="l1", dual=False).fit(X, y)
         model = SelectFromModel(lsvc, prefit=True)
         reduced_matrix = model.transform(X)
+```
+
+## SelectPercentile
+Selecciona el percentile indicado de los features actuales. La selección una
+vez mas la hará basandose en la clase de target enviada.
+```python
     if method == "SelectPercentile":
         from sklearn.feature_selection import SelectPercentile, f_classif
         X, y = matrix, target
         selector = SelectPercentile(f_classif, percentile=5)
         reduced_matrix = selector.fit_transform(X, y)
 ```
-## LinearSVC
-
-## SelectPercentile
-Selecciona el percentile indicado de los features actuales. La selección una
-vez mas la hará basandose en la clase de target enviada.
-
 # Resultados en clustering
 ## Métodos no supervisados sobre corpus de "la voz del interior".
 
